@@ -1,142 +1,324 @@
-// src/components/Header.jsx
-import React, { useEffect, useState } from "react";
-import Logo from "../assets/images/Logo.png";
+// NavBar2.jsx
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "react-feather";
+import Logo from '../assets/images/Logo.png'
 
-/**
- * Header — solid light-blue, no unwanted transparency on scroll
- */
-export default function Header({ cartCount = 0 }) {
-  const [scrolled, setScrolled] = useState(false);
+export default function NavBar2() {
   const [open, setOpen] = useState(false);
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const navWrapRef = useRef(null);
+  const navRef = useRef(null);
 
+  // Close menus on route change
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    setOpen(false);
+    setMobileProgramsOpen(false);
+  }, [pathname]);
+
+  // Click outside to close (mobile)
+  useEffect(() => {
+    const handler = (e) => {
+      if (!navWrapRef.current) return;
+      if (!navWrapRef.current.contains(e.target)) {
+        setOpen(false);
+        setMobileProgramsOpen(false);
+      }
+    };
+    if (open) document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  // Scroll shadow
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 4);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Measure nav height for spacer
+  useLayoutEffect(() => {
+    const setVar = () => {
+      if (!navRef.current) return;
+      const h = navRef.current.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--nav-h", `${Math.ceil(h)}px`);
+    };
+    setVar();
+    const ro = new ResizeObserver(setVar);
+    if (navRef.current) ro.observe(navRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <header
-      data-scrolled={scrolled ? "true" : "false"}
-      className={[
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled
-          ? "bg-sky-50/95 supports-[backdrop-filter]:bg-sky-50/90 backdrop-blur-md border-b border-sky-200 shadow-sm"
-          : "bg-sky-50 border-b border-transparent",
-        "dark:bg-white-900/80 dark:supports-[backdrop-filter]:bg-white-900/70 dark:border-white/5",
-      ].join(" ")}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center gap-4 px-4 md:px-6 lg:px-8 py-3">
-        {/* Left: Logo */}
-        <div className="flex min-w-0 flex-1 items-center">
-          <img src={Logo} className="w-[150px] h-auto" alt="D’Cindy Eyecare logo" />
-        </div>
+    <>
+      {/* Spacer pushes content below fixed nav */}
+      <div style={{ height: "calc(var(--nav-h, 72px) + env(safe-area-inset-top, 0px))" }} />
 
-        {/* Center: Desktop Nav */}
-        <div className="hidden lg:flex">
-          <ul className="flex items-center gap-6">
-            {[
-              ["Home", "/"],
-              ["Contact", "/contact"],
-              ["About", "/about"],
-              ["Shop", "/shop"],
-            ].map(([label, href]) => (
-              <li key={label} className="group">
-                <a
-                  href={href}
-                  className="relative inline-flex items-center text-sm font-medium text-black hover:text-black/80 transition-colors"
-                >
-                  {label}
-                  <span className="pointer-events-none absolute inset-x-0 -bottom-1 mx-auto h-0.5 w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="custom-navbar-root" ref={navWrapRef}>
+        <style>{`
+          :root { --nav-h: 72px; }
 
-        {/* Right: Actions */}
-        <div className="ms-auto flex items-center gap-2">
-          <a
-            href="/signin"
-            className="inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            Book Appointment
-          </a>
+          .custom-navbar-root {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+          }
+
+          nav.custom {
+            background: rgba(255, 255, 255, 0.84);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: calc(0.5rem + env(safe-area-inset-top, 0px)) 2rem 0.75rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+          }
+          nav.custom.scrolled {
+            box-shadow: 0 6px 18px -10px rgba(0,0,0,0.25);
+            border-bottom-color: rgba(0,0,0,0.12);
+            background: rgba(255, 255, 255, 0.9);
+          }
+
+          @media (max-width: 768px) {
+            nav.custom { padding: calc(0.5rem + env(safe-area-inset-top, 0px)) 1rem 0.75rem 1rem; }
+          }
+
+          .logo-container { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+          .logo-text {
+            font-size: 1.2rem; font-weight: 800;
+            background: linear-gradient(90deg, #3b82f6 0%, #3b82f6 50%, #3b82f6 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            letter-spacing: -0.025em; line-height: 1;
+          }
+          .logo-sub {
+            display: block; font-size: 0.7rem; font-weight: 700;
+            background: linear-gradient(90deg, #065f46, #10b981, #065f46);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            letter-spacing: .02em; margin-top: 2px;
+          }
+
+          /* verification badge (scalloped like twitter/x) */
+          .verify-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: .35rem;
+            vertical-align: middle;
+            transform: translateY(-1px);
+            border-radius: 999px;
+            line-height: 0;
+            box-shadow: 0 0 0 2px rgba(255,255,255,.85);
+          }
+          .verify-badge svg {
+            width: 18px; height: 18px;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,.08));
+          }
+          .verify-badge:hover { box-shadow: 0 0 0 2px rgba(59,130,246,.25); }
+
+          .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+
+          .nav-link {
+            position: relative; font-weight: 600; color: #1f2937; padding: 0.5rem 0; text-decoration: none; transition: all .2s ease;
+          }
+          .nav-link:hover { color: #2c23e7ff; }
+          .nav-link::after {
+            content:''; position:absolute; bottom:0; left:0; width:0; height:2px;
+            background: linear-gradient(90deg, #2822d3ff 0%, #2c23e7ff 100%);
+            transition: width .3s ease;
+          }
+          .nav-link:hover::after, .nav-link[aria-current="page"]::after { width:100%; }
+
+          .cta-button {
+            background: linear-gradient(90deg, #2c23e7ff 0%, #2921d0ff 100%);
+            color:#fff; padding: .5rem 1.5rem; border-radius: .5rem; font-weight: 600;
+            transition: all .2s ease; border: none; cursor: pointer; text-decoration: none; white-space: nowrap;
+            box-shadow: 0 4px 6px -1px rgba(124,58,237,.2);
+          }
+          .cta-button:hover { transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(124,58,237,.3); }
+
+          .mobile-menu-button { display: none; background: none; border: 1px solid rgba(0,0,0,0.1); border-radius: .5rem; cursor: pointer; padding: .5rem; line-height: 0; }
+          @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-button { display: block; } }
+
+          /* Desktop dropdown */
+          .dropdown { position: relative; }
+          .dropdown-btn { display: inline-flex; align-items: center; gap: .35rem; cursor: default; }
+          .dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 10px); left: 0;
+            min-width: 260px; background: #fff; border: 1px solid rgba(0,0,0,0.08);
+            border-radius: .75rem; padding: .5rem; box-shadow: 0 12px 28px rgba(2,8,20,.12);
+          }
+          .dropdown:hover .dropdown-menu,
+          .dropdown:focus-within .dropdown-menu { display: block; }
+          .dropdown-item {
+            display:flex; align-items:center; gap:.6rem; padding:.55rem .65rem; border-radius:.5rem; text-decoration:none; color:#111827; font-weight: 500;
+          }
+          .dropdown-item:hover { background: rgba(44,35,231,.06); color:#2c23e7ff; }
+
+          /* Mobile menu (fixed) */
+          .mobile-menu {
+            display: none; flex-direction: column; gap: 1rem; padding: 1rem; background: #fff;
+            border-radius: .5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+            position: fixed; top: calc(var(--nav-h,72px) + 8px); right: 2rem; width: min(340px, 88vw);
+            z-index: 1001; border: 1px solid rgba(0,0,0,.06);
+          }
+          .mobile-menu.open { display: flex; }
+          @media (max-width: 768px) { .mobile-menu { right: 1rem; } }
+
+          .mobile-group { display: flex; flex-direction: column; gap: .5rem; }
+          .mobile-accordion-btn {
+            display:flex; justify-content:space-between; align-items:center;
+            padding:.6rem .75rem; border-radius:.5rem; border:1px solid rgba(0,0,0,.08);
+            background:#f9fafb; font-weight:600; color:#1f2937;
+          }
+          .mobile-submenu { display: grid; gap: .4rem; padding:.6rem .25rem 0 .25rem; }
+          .mobile-submenu a { padding:.45rem .5rem; border-radius:.4rem; text-decoration:none; color:#111827; }
+          .mobile-submenu a:hover { background: rgba(44,35,231,.06); color:#2c23e7ff; }
+
+          .mobile-cta-button { width: 100%; text-align: center; }
+        `}</style>
+
+        <nav
+          className={`custom ${scrolled ? "scrolled" : ""}`}
+          ref={navRef}
+          role="navigation"
+          aria-label="Primary"
+        >
+          {/* Brand */}
+          <Link to="/" className="logo-container" aria-label="Tech Minds Academy Home">
+            <img src={Logo} width={130} height={64} alt="Tech Minds Academy logo" />
+            <span>
+              <span className="logo-text">
+                D’Cindy Eyecare
+                {/* scalloped verification badge */}
+                <span className="verify-badge" role="img" aria-label="Verified account" title="Verified">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    {/* scalloped blob */}
+                    <path
+                      fill="#1DA1F2"
+                      d="M22 12c0 .9-.7 1.6-1.6 1.8.2.9-.2 1.8-1 2.3.3.8.1 1.8-.6 2.4-.7.6-1.6.8-2.4.6-.5.8-1.4 1.2-2.3 1-.2.9-.9 1.6-1.8 1.6s-1.6-.7-1.8-1.6c-.9.2-1.8-.2-2.3-1-.8.3-1.8.1-2.4-.6-.6-.7-.8-1.6-.6-2.4-.8-.5-1.2-1.4-1-2.3-.9-.2-1.6-.9-1.6-1.8s.7-1.6 1.6-1.8c-.2-.9.2-1.8 1-2.3-.3-.8-.1-1.8.6-2.4.7-.6 1.6-.8 2.4-.6.5-.8 1.4-1.2 2.3-1 .2-.9.9-1.6 1.8-1.6s1.6.7 1.8 1.6c.9-.2 1.8.2 2.3 1 .8-.3 1.8-.1 2.4.6.6.7.8 1.6.6 2.4.8.5 1.2 1.4 1 2.3.9.2 1.6.9 1.6 1.8z"
+                    />
+                    {/* check */}
+                    <path
+                      d="M9.2 12.7l1.9 1.9 3.9-3.9"
+                      fill="none"
+                      stroke="#fff"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </span>
+              <span className="logo-sub">Your Vision, Our Piority</span>
+            </span>
+          </Link>
+
+          {/* Desktop links + Programs dropdown */}
+          <div className="nav-links" aria-label="Main">
+            <NavLinkExact to="/">Home</NavLinkExact>
+            <NavLinkPrefix to="/facilities">About</NavLinkPrefix>
+
+            {/* Programs (dropdown) */}
+            <div className="dropdown">
+              <span className="nav-link dropdown-btn" tabIndex={0} aria-haspopup="true" aria-expanded="false">
+                Shop ▾
+              </span>
+              <div className="dropdown-menu" role="menu" aria-label="Programs">
+                <Link to="/programs/software-engineering/web-development" className="dropdown-item" role="menuitem">
+                  Web Development
+                </Link>
+                <Link to="/programs/software-engineering/app-development" className="dropdown-item" role="menuitem">
+                  App Development
+                </Link>
+                <Link to="/programs/data-science" className="dropdown-item" role="menuitem">
+                  Data Science
+                </Link>
+                <Link to="/programs/cloud-computing" className="dropdown-item" role="menuitem">
+                  Cloud Computing
+                </Link>
+                <Link to="/programs/digital-marketing" className="dropdown-item" role="menuitem">
+                  Digital Marketing
+                </Link>
+                <Link to="/programs/coding-for-kids-engineering" className="dropdown-item" role="menuitem">
+                  Coding for Kids Engineering
+                </Link>
+              </div>
+            </div>
+
+            <NavLinkPrefix to="/contact">Services</NavLinkPrefix>
+            <Link to="/application" className="cta-button">Book An Apppointment</Link>
+          </div>
 
           {/* Mobile toggle */}
           <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 text-sky-900 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 lg:hidden dark:text-white dark:border-neutral-700 dark:hover:bg-neutral-800"
+            className="mobile-menu-button"
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label="Toggle navigation"
+            onClick={() => setOpen((v) => !v)}
           >
-            {open ? (
-              <svg
-                className="size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            ) : (
-              <svg
-                className="size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="3" x2="21" y1="6" y2="6" />
-                <line x1="3" x2="21" y1="12" y2="12" />
-                <line x1="3" x2="21" y1="18" y2="18" />
-              </svg>
-            )}
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </div>
-      </nav>
 
-      {/* Mobile Menu */}
-      <div
-        id="mobile-nav"
-        className={[
-          "lg:hidden overflow-hidden transition-[max-height] duration-300",
-          open ? "max-h-96" : "max-h-0",
-        ].join(" ")}
-      >
-        <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 pb-4">
-          <ul className="divide-y divide-sky-200 rounded-2xl border border-sky-200 bg-sky-50 dark:bg-blue-900/80 dark:divide-white/5 dark:border-white/5">
-            {[
-              ["Home", "/"],
-              ["Contact", "/contact"],
-              ["About", "/about"],
-              ["Shop", "/shop"],
-            ].map(([label, href]) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  className="flex items-center justify-between px-4 py-3 text-sm font-medium text-black hover:bg-white/70 dark:text-black dark:hover:bg-white/10"
-                  onClick={() => setOpen(false)}
-                >
-                  {label}
-                  <span aria-hidden="true">›</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          {/* Mobile menu with Programs accordion */}
+          <div className={`mobile-menu ${open ? "open" : ""}`}>
+            <NavLinkExact to="/">Home</NavLinkExact>
+            <NavLinkPrefix to="/facilities">About</NavLinkPrefix>
+
+            <div className="mobile-group">
+              <button
+                type="button"
+                className="mobile-accordion-btn"
+                onClick={() => setMobileProgramsOpen((v) => !v)}
+                aria-expanded={mobileProgramsOpen}
+                aria-controls="mobile-programs"
+              >
+                Shop
+                <span>{mobileProgramsOpen ? "▴" : "▾"}</span>
+              </button>
+              {mobileProgramsOpen && (
+                <div id="mobile-programs" className="mobile-submenu">
+                  <Link to="/programs/software-engineering/web-development">Web Development</Link>
+                  <Link to="/programs/software-engineering/app-development">App Development</Link>
+                  <Link to="/programs/data-science">Data Science</Link>
+                  <Link to="/programs/cloud-computing">Cloud Computing</Link>
+                  <Link to="/programs/digital-marketing">Digital Marketing</Link>
+                  <Link to="/programs/coding-for-kids-engineering">Coding for Kids Engineering</Link>
+                  <Link to="/programs">View all Programs →</Link>
+                </div>
+              )}
+            </div>
+
+            <NavLinkPrefix to="/contact">Services</NavLinkPrefix>
+            <Link to="/application" className="cta-button mobile-cta-button">Apply Now</Link>
+          </div>
+        </nav>
       </div>
-    </header>
+    </>
+  );
+}
+
+/* -------- Helpers for aria-current handling -------- */
+function useAriaCurrent(to, mode) {
+  const { pathname } = useLocation();
+  if (mode === "exact") return pathname === to ? "page" : undefined;
+  return pathname.startsWith(to) ? "page" : undefined;
+}
+function NavLinkExact({ to, children }) {
+  const aria = useAriaCurrent(to, "exact");
+  return (
+    <Link to={to} className="nav-link" aria-current={aria}>
+      {children}
+    </Link>
+  );
+}
+function NavLinkPrefix({ to, children }) {
+  const aria = useAriaCurrent(to, "prefix");
+  return (
+    <Link to={to} className="nav-link" aria-current={aria}>
+      {children}
+    </Link>
   );
 }
