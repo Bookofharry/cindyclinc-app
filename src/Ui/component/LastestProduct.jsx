@@ -1,27 +1,7 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 
-/**
- * LatestProducts — Eye clinic: shows most recent products (frames, lenses, drops, etc.)
- *
- * Props:
- * - products: Array<Product>
- *   Product = {
- *     id: string | number,
- *     name: string,
- *     price: number,
- *     imageUrl?: string,
- *     category?: string,
- *     createdAt?: string | number | Date,
- *     inStock?: boolean,
- *     rating?: number, // 0..5
- *   }
- * - limit?: number (default 8)
- * - loading?: boolean (show skeletons)
- * - seeAllHref?: string (e.g., "/shop")
- * - currency?: "NGN" | "USD" | string (default "NGN")
- * - className?: string
- */
+
 export default function LatestProducts({
   products = [],
   limit = 8,
@@ -69,7 +49,7 @@ export default function LatestProducts({
           {loading
             ? Array.from({ length: limit }).map((_, i) => <SkeletonCard key={i} />)
             : items.length > 0
-            ? items.map((p) => <ProductCard key={p.id} product={p} currency={currency} />)
+            ? items.map((p) => <ProductCard  key={p.id} product={p} currency={currency} />)
             : <EmptyState />}
         </div>
       </div>
@@ -118,11 +98,12 @@ function ProductCard({ product, currency }) {
               New
             </span>
           )}
-          {!inStock && (
-            <span className="rounded-full bg-red-500/90 px-2.5 py-1 text-xs font-semibold text-white shadow">
+
+          {product.amountInStock < 1 ?             <span className="rounded-full bg-red-500/90 px-2.5 py-1 text-xs font-semibold text-white shadow">
               Out of stock
-            </span>
-          )}
+            </span> :             <span className="rounded-full bg-sky-500/90 px-2.5 py-1 text-xs font-semibold text-white shadow">
+              In stock
+            </span>}
         </div>
       </div>
 
