@@ -28,7 +28,7 @@ export default function Header({ cartCount = 0 }) {
         scrolled
           ? "bg-sky-50/95 supports-[backdrop-filter]:bg-sky-50/90 backdrop-blur-md border-b border-sky-200 shadow-sm"
           : "bg-sky-50 border-b border-transparent",
-        "dark:bg-blue-900/80 dark:supports-[backdrop-filter]:bg-blue-900/70 dark:border-white/5",
+        "dark:bg-white-900/80 dark:supports-[backdrop-filter]:bg-white-900/70 dark:border-white/5",
       ].join(" ")}
     >
       <nav className="mx-auto flex max-w-7xl items-center gap-4 px-4 md:px-6 lg:px-8 py-3">
@@ -41,15 +41,15 @@ export default function Header({ cartCount = 0 }) {
         </div>
 
         {/* Center: Desktop Nav */}
-        <div className="hidden lg:flex">
-          <ul className="flex items-center gap-6">
+        <div className="hidden lg:flex" >
+          <ul  className="flex items-center gap-6">
             {[
               ["Home", "/"],
               ["Contact", "/contact"],
               ["About", "/about"],
               ["Shop", "/shop"],
             ].map(([label, href]) => (
-              <li key={label} className="group">
+              <li  key={label} className="group">
                 <a
                   href={href}
                   className="relative inline-flex items-center text-sm font-medium text-sky-900 hover:text-sky-950 dark:text-gray-100/90 dark:hover:text-white transition-colors"
