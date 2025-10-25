@@ -20,7 +20,7 @@ function App(){
 
     <Routes>
       <Route path='/' element={<Home/>} />
-      {/* <Route path='*' element={<NotFound/>} /> */}
+      <Route path='*' element={<NotFound/>} />
       {/* <Route path='/contact' element={<Prepage/>} /> */}
       {/* <Route path='/about' element={<Prepage/>} /> */}
       {/* <Route path='/shop' element={<Prepage/>} /> */}
