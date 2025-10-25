@@ -1,7 +1,7 @@
 import Vision from "../Ui/component/Carousel";
 import ClinicIntro from "../Ui/component/Heading";
 import LatestProducts from "../Ui/component/LastestProduct";
-
+import ClinicServices from "../Ui/component/Services";
 const demo = [
   {
     id: "lens-pro-001",
@@ -126,6 +126,7 @@ export default function Home() {
         seeAllHref="/shop"
         currency="NGN"
       />
+      <ClinicServices/>
     </div>
   );
 }

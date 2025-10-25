@@ -53,7 +53,7 @@ export default function Vision({
             
             {/* Logo/Brand Tagline (optional, can be removed if in header) */}
             <div className="flex items-center justify-center lg:justify-start mb-4">
-              <img src={Logo} alt="Clinic Logo" className="w-10 h-10 mr-2" />
+              {/* <img src={Logo} alt="Clinic Logo" className="w-50 h-10 mr-2" /> */}
               <p className="text-sm font-medium tracking-widest text-indigo-400 uppercase">
                 Future of Vision Care
               </p>

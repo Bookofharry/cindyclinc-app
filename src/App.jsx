@@ -15,10 +15,12 @@ import NotFound from './pages/Notfound.jsx';
 function App(){
   return(
     <BrowserRouter>
+    
     <Header  />
 
 
     <Routes>
+
       <Route path='/' element={<Home/>} />
       <Route path='*' element={<NotFound/>} />
       {/* <Route path='/contact' element={<Prepage/>} /> */}

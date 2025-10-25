@@ -17,7 +17,7 @@ export default function Footer() {
 
 				
 			</a>
-            <span className="self-center text-2xl font-semibold">D’Cindy Eyecare </span>
+            <span className="text-sm font-medium tracking-widest text-indigo-400 uppercase">D’Cindy Eyecare </span>
 		</div>
 		<div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
 			<div className="space-y-3">
