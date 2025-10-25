@@ -188,7 +188,7 @@ export default function NavBar2() {
         >
           {/* Brand */}
           <Link to="/" className="logo-container" aria-label="Tech Minds Academy Home">
-            <img src={Logo} width={130} height={64} alt="Tech Minds Academy logo" />
+            <img src={Logo} width={110} height={64} alt="Tech Minds Academy logo" />
             <span>
               <span className="logo-text">
                 D’Cindy Eyecare
@@ -219,7 +219,7 @@ export default function NavBar2() {
           {/* Desktop links + Programs dropdown */}
           <div className="nav-links" aria-label="Main">
             <NavLinkExact to="/">Home</NavLinkExact>
-            <NavLinkPrefix to="/facilities">About</NavLinkPrefix>
+            <NavLinkPrefix to="/about">About</NavLinkPrefix>
 
             {/* Programs (dropdown) */}
             <div className="dropdown">
@@ -249,7 +249,7 @@ export default function NavBar2() {
             </div>
 
             <NavLinkPrefix to="/contact">Services</NavLinkPrefix>
-            <Link to="/application" className="cta-button">Book An Apppointment</Link>
+            <Link to="/appointment" className="cta-button">Book An Apppointment</Link>
           </div>
 
           {/* Mobile toggle */}
@@ -265,7 +265,7 @@ export default function NavBar2() {
           {/* Mobile menu with Programs accordion */}
           <div className={`mobile-menu ${open ? "open" : ""}`}>
             <NavLinkExact to="/">Home</NavLinkExact>
-            <NavLinkPrefix to="/facilities">About</NavLinkPrefix>
+            <NavLinkPrefix to="/about">About</NavLinkPrefix>
 
             <div className="mobile-group">
               <button
@@ -292,7 +292,7 @@ export default function NavBar2() {
             </div>
 
             <NavLinkPrefix to="/contact">Services</NavLinkPrefix>
-            <Link to="/application" className="cta-button mobile-cta-button">Apply Now</Link>
+            <Link to="/appointment" className="cta-button mobile-cta-button">Book An Appointment</Link>
           </div>
         </nav>
       </div>
