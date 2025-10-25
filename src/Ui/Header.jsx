@@ -4,9 +4,6 @@ import Logo from "../assets/images/Logo.png";
 
 /**
  * Header — solid light-blue, no unwanted transparency on scroll
- * - Sticky top with consistent height (prevents layout shift)
- * - Solid bg at top; slightly elevated with shadow after scroll
- * - Mobile menu uses solid bg (no backdrop translucency)
  */
 export default function Header({ cartCount = 0 }) {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +21,6 @@ export default function Header({ cartCount = 0 }) {
       data-scrolled={scrolled ? "true" : "false"}
       className={[
         "sticky top-0 z-50 w-full transition-all duration-300",
-        // Keep a border in both states to avoid height jump
         scrolled
           ? "bg-sky-50/95 supports-[backdrop-filter]:bg-sky-50/90 backdrop-blur-md border-b border-sky-200 shadow-sm"
           : "bg-sky-50 border-b border-transparent",
@@ -35,24 +31,21 @@ export default function Header({ cartCount = 0 }) {
         {/* Left: Logo */}
         <div className="flex min-w-0 flex-1 items-center">
           <img src={Logo} className="w-[150px] h-auto" alt="D’Cindy Eyecare logo" />
-          {/* <span className="hidden text-lg font-bold tracking-tight sm:block text-sky-900">
-            D’Cindy Eyecare
-          </span> */}
         </div>
 
         {/* Center: Desktop Nav */}
-        <div className="hidden lg:flex" >
-          <ul  className="flex items-center gap-6">
+        <div className="hidden lg:flex">
+          <ul className="flex items-center gap-6">
             {[
               ["Home", "/"],
               ["Contact", "/contact"],
               ["About", "/about"],
               ["Shop", "/shop"],
             ].map(([label, href]) => (
-              <li  key={label} className="group">
+              <li key={label} className="group">
                 <a
                   href={href}
-                  className="relative inline-flex items-center text-sm font-medium text-sky-900 hover:text-sky-950 dark:text-gray-100/90 dark:hover:text-white transition-colors"
+                  className="relative inline-flex items-center text-sm font-medium text-black hover:text-black/80 transition-colors"
                 >
                   {label}
                   <span className="pointer-events-none absolute inset-x-0 -bottom-1 mx-auto h-0.5 w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
@@ -68,7 +61,7 @@ export default function Header({ cartCount = 0 }) {
             href="/signin"
             className="inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
-            Book Appointments
+            Book Appointment
           </a>
 
           {/* Mobile toggle */}
@@ -133,7 +126,7 @@ export default function Header({ cartCount = 0 }) {
               <li key={label}>
                 <a
                   href={href}
-                  className="flex items-center justify-between px-4 py-3 text-sm font-medium text-sky-900 hover:bg-white/70 dark:text-gray-200 dark:hover:bg-white/10"
+                  className="flex items-center justify-between px-4 py-3 text-sm font-medium text-black hover:bg-white/70 dark:text-black dark:hover:bg-white/10"
                   onClick={() => setOpen(false)}
                 >
                   {label}

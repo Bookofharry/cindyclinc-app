@@ -1,5 +1,6 @@
+// src/components/Vision.jsx
 import React from "react";
-import Logo from '../../assets/images/Logo.png'
+import Logo from "../../assets/images/Logo.png";
 import { Link } from "react-router-dom";
 import {
   FaEye,
@@ -7,46 +8,36 @@ import {
   FaGlasses,
   FaEyeDropper,
   FaHeartbeat,
-  FaShoppingBag,
   FaUser,
 } from "react-icons/fa";
 
 /**
- * Vision (EyeCare hero) — React + Tailwind
- *
- * Usage:
- *   <Vision onBook={() => navigate('/book')} onExplore={() => navigate('/shop')} />
- *
- * Props:
- * - title, subtitle, blurb: strings to override default copy
- * - onBook, onExplore: click handlers for CTAs
- * - className: extra wrapper classes
+ * Vision — Appointment-focused hero (rephrased & structured for booking data)
+ * - Copy emphasizes scheduling flow (service → date/time → patient details → confirmation)
+ * - Buttons link to the appointment page/section
  */
 export default function Vision({
-  title = "Your Vision, Our Priority",
-  subtitle = "Give Your Eyes the Care They Deserve",
+  title = "Book Your Eye Appointment",
+  subtitle = "Professional care, convenient scheduling",
   blurb =
-    "Discover expert eye care services designed to protect and enhance your vision. See better, live better.",
-  onBook,
-  onExplore,
+    "Select a service, choose a date and time, and we’ll reserve your slot. Same-day and weekend availability when open.",
   className = "",
 }) {
-
-
   return (
-    <section  className={`min-h-[70vh] w-full px-4 py-8 md:py-12 flex items-center justify-center ${className}`}>
-      <div  className="w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-sky-300 to-white-600">
+    <section
+      className={`min-h-[70vh] w-full px-4 py-8 md:py-12 flex items-center justify-center ${className}`}
+    >
+      <div className="w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-sky-300 to-white">
         <div className="grid md:grid-cols-2">
           {/* Left: Visual */}
           <div className="hidden md:flex items-center justify-center p-8 relative overflow-hidden">
             <div className="absolute inset-0 bg-white/10" />
             <div className="relative z-10 text-center">
-              <div className="mb-8 text-white animate-bounce">
-                <img src={Logo} alt="" />
-                {/* <FaEye className="w-24 h-24 md:w-28 md:h-28 inline-block" /> */}
+              <div className="mb-6 text-white animate-bounce">
+                <img src={Logo} alt="Clinic logo" className="mx-auto w-76 h-auto" />
               </div>
               <p className="text-white/95 text-lg font-medium">
-                Clear Vision for a Brighter Tomorrow
+                Easy, fast, and reliable scheduling
               </p>
             </div>
             <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-white/10" />
@@ -56,60 +47,68 @@ export default function Vision({
           {/* Right: Copy */}
           <div className="bg-white p-8 md:p-12">
             <div className="backdrop-blur-md bg-white/90 rounded-2xl shadow-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">{title}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                {title}
+              </h1>
               <p className="text-gray-600 mb-4">{subtitle}</p>
               <p className="text-gray-700">{blurb}</p>
 
               <div className="flex flex-wrap gap-4 mt-8">
-                <button
-                  
+                {/* Primary: Schedule */}
+                <Link
+                  to="/appointment"
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-medium btn-primary transition-all duration-300"
                 >
                   <FaCalendarCheck />
-                  <Link to='/appointment'><span>Book Appointment</span></Link>
-                </button>
-                <button
-                  
+                  <span>Schedule an Appointment</span>
+                </Link>
+
+                {/* Secondary: Hours/Slots (adjust anchor to match your page) */}
+                <Link
+                  to="/appointment#availability"
                   className="inline-flex items-center gap-2 text-indigo-700 px-6 py-3 rounded-full font-medium border-2 border-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300"
                 >
                   <FaGlasses />
-                  <Link to='/shop' ><span>Explore Eyecare Products</span></Link>
-                </button>
+                  <span>View Clinic Hours & Slots</span>
+                </Link>
               </div>
             </div>
 
-            {/* Services */}
+            {/* Appointment Flow / Services */}
             <div className="mt-8 grid grid-cols-2 gap-4">
               <ServiceCard
-                icon={<FaEyeDropper className="w-5 h-5" />}
-                title="Comprehensive Exams"
-                text="Thorough eye health assessments"
+                icon={<FaEye className="w-5 h-5" />}
+                title="1) Choose a Service"
+                text="Eye exam, consultation, lens fitting, and more."
               />
               <ServiceCard
-                icon={<FaGlasses className="w-5 h-5" />}
-                title="Vision Correction"
-                text="Personalized solutions"
+                icon={<FaCalendarCheck className="w-5 h-5" />}
+                title="2) Pick Date & Time"
+                text="Select the slot that fits your schedule."
+              />
+              <ServiceCard
+                icon={<FaUser className="w-5 h-5" />}
+                title="3) Patient Details"
+                text="Provide your name, contact, and preferences."
               />
               <ServiceCard
                 icon={<FaHeartbeat className="w-5 h-5" />}
-                title="Disease Management"
-                text="Specialized treatments"
-              />
-              <ServiceCard
-                icon={<FaShoppingBag className="w-5 h-5" />}
-                title="Premium Frames"
-                text="Stylish & comfortable"
+                title="4) Confirmation"
+                text="Receive booking confirmation and reminders."
               />
             </div>
           </div>
         </div>
 
-        {/* Testimonial */}
+        {/* Testimonial (kept, but rephrased toward appointments) */}
         <div className="bg-indigo-50 p-8 text-center">
-          <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">Trusted by Thousands</h3>
+          <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">
+            Patients love our simple booking
+          </h3>
           <div className="max-w-2xl mx-auto">
             <p className="text-gray-600 italic mb-4">
-              "The care I received was exceptional. My vision has never been clearer!"
+              “Booking was quick and easy, and the exam was thorough. Highly
+              recommend!”
             </p>
             <div className="flex items-center justify-center">
               <div className="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center mr-3">
