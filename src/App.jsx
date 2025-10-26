@@ -10,7 +10,7 @@ import Shop from './pages/Shop.jsx';
 import About from './pages/About.jsx';
 import Appointment from './pages/Appointment.jsx'
 import Contact from './pages/Contact.jsx'
-
+import ScrollToTop from './Scroll.jsx';
 
 
 
@@ -19,6 +19,7 @@ import Contact from './pages/Contact.jsx'
 function App(){
   return(
     <BrowserRouter>
+    <ScrollToTop/>
 
     <Navbar2  />
 

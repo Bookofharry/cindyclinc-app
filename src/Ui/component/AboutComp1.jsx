@@ -11,7 +11,7 @@ export default function AboutCindyEyeCare() {
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
               <span className="inline-flex items-center rounded-full border border-sky-200 bg-white/70 px-3 py-1 text-xs font-medium text-sky-700">
-                The Cindy Eye Care
+                D'Cindy Eye Care
               </span>
               <h1 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 md:text-5xl">
                 About <span className="text-sky-700">Cindy Eye Care</span>
@@ -184,7 +184,7 @@ export default function AboutCindyEyeCare() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="border-t border-slate-100 bg-gradient-to-br from-sky-50 to-white">
+      {/* <section className="border-t border-slate-100 bg-gradient-to-br from-sky-50 to-white">
         <div className="mx-auto max-w-7xl px-6 py-14 md:py-20">
           <div className="rounded-2xl border border-sky-100 bg-white px-6 py-10 shadow-sm md:px-10">
             <div className="grid gap-6 md:grid-cols-3 md:items-center">
@@ -213,7 +213,7 @@ export default function AboutCindyEyeCare() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

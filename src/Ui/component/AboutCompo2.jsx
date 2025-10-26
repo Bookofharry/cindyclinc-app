@@ -116,7 +116,7 @@ export default function AboutCindyCreative() {
       </section>
 
       {/* Value Cards */}
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      {/* <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <ValueCard
             icon={<LensIcon />}
@@ -139,7 +139,7 @@ export default function AboutCindyCreative() {
             desc="Warm service, exact measurements, and lifetime adjustments."
           />
         </div>
-      </section>
+      </section> */}
 
       {/* Story Timeline */}
       <section className="border-y border-slate-100 bg-slate-50/50">

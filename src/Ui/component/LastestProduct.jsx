@@ -115,7 +115,7 @@ function ProductCard({ product, currency }) {
           </p>
         )}
         <h3 className="line-clamp-2 text-sm font-semibold text-sky-950">{name}</h3>
-        <span>Code - {code}</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">Code - {code}</span>
         <div className="mt-1 flex items-center justify-between">
           <Price value={price} currency={currency} />
           {/* <Stars value={rating} /> */}
