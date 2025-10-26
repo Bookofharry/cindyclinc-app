@@ -68,7 +68,7 @@ export default function NavBar2() {
           }
 
           nav.custom {
-            background: rgba(255, 255, 255, 0.84);
+            background: rgba(255, 255, 255, 1);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -220,6 +220,7 @@ export default function NavBar2() {
           <div className="nav-links" aria-label="Main">
             <NavLinkExact to="/">Home</NavLinkExact>
             <NavLinkPrefix to="/about">About</NavLinkPrefix>
+            <NavLinkPrefix to="/contact">Contact</NavLinkPrefix>
 
             {/* Programs (dropdown) */}
             <div className="dropdown">
@@ -228,15 +229,15 @@ export default function NavBar2() {
               </span>
               <div className="dropdown-menu" role="menu" aria-label="Programs">
                 <Link to="/programs/software-engineering/web-development" className="dropdown-item" role="menuitem">
-                  Web Development
+                  Frames
                 </Link>
                 <Link to="/programs/software-engineering/app-development" className="dropdown-item" role="menuitem">
-                  App Development
+                  Lenses
                 </Link>
                 <Link to="/programs/data-science" className="dropdown-item" role="menuitem">
-                  Data Science
+                  Eye Drop
                 </Link>
-                <Link to="/programs/cloud-computing" className="dropdown-item" role="menuitem">
+                {/* <Link to="/programs/cloud-computing" className="dropdown-item" role="menuitem">
                   Cloud Computing
                 </Link>
                 <Link to="/programs/digital-marketing" className="dropdown-item" role="menuitem">
@@ -244,11 +245,11 @@ export default function NavBar2() {
                 </Link>
                 <Link to="/programs/coding-for-kids-engineering" className="dropdown-item" role="menuitem">
                   Coding for Kids Engineering
-                </Link>
+                </Link> */}
               </div>
             </div>
 
-            <NavLinkPrefix to="/contact">Services</NavLinkPrefix>
+            <NavLinkPrefix to="/service">Services</NavLinkPrefix>
             <Link to="/appointment" className="cta-button">Book An Apppointment</Link>
           </div>
 
@@ -266,6 +267,7 @@ export default function NavBar2() {
           <div className={`mobile-menu ${open ? "open" : ""}`}>
             <NavLinkExact to="/">Home</NavLinkExact>
             <NavLinkPrefix to="/about">About</NavLinkPrefix>
+            <NavLinkPrefix to="/contact">Contact</NavLinkPrefix>
 
             <div className="mobile-group">
               <button
@@ -280,18 +282,18 @@ export default function NavBar2() {
               </button>
               {mobileProgramsOpen && (
                 <div id="mobile-programs" className="mobile-submenu">
-                  <Link to="/programs/software-engineering/web-development">Web Development</Link>
-                  <Link to="/programs/software-engineering/app-development">App Development</Link>
-                  <Link to="/programs/data-science">Data Science</Link>
-                  <Link to="/programs/cloud-computing">Cloud Computing</Link>
+                  <Link to="">Frames</Link>
+                  <Link to="">Lenses</Link>
+                  <Link to="">Eye Drop</Link>
+                  {/* <Link to="/programs/cloud-computing">Cloud Computing</Link>
                   <Link to="/programs/digital-marketing">Digital Marketing</Link>
                   <Link to="/programs/coding-for-kids-engineering">Coding for Kids Engineering</Link>
-                  <Link to="/programs">View all Programs →</Link>
+                  <Link to="/programs">View all Programs →</Link> */}
                 </div>
               )}
             </div>
 
-            <NavLinkPrefix to="/contact">Services</NavLinkPrefix>
+            <NavLinkPrefix to="/service">Services</NavLinkPrefix>
             <Link to="/appointment" className="cta-button mobile-cta-button">Book An Appointment</Link>
           </div>
         </nav>

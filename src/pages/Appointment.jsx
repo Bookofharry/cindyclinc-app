@@ -1,9 +1,10 @@
+import AppointmentCindy from "../Ui/component/Appointmentcomp1"
+import BookingGuideCindy from "../Ui/component/Appointmentcompo2"
 export default function Appointment(){
     return(
         <div>
-            <h1>
-                Appointment Page
-            </h1>
+            <BookingGuideCindy />
+            <AppointmentCindy/>
         </div>
     )
 }

@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Column 1: Logo & Brand */}
           <div className="col-span-2 lg:col-span-2 space-y-4 pr-10">
             <Link to="/" className="flex items-center space-x-3">
-                <img src={Logo} alt="D’Cindy Eyecare Logo" className="w-40 h-20" />
+                <img src={Logo} alt="D’Cindy Eyecare Logo" className="w-60 h-20" />
                 
             </Link>
             <p className="text-sm text-gray-500 max-w-sm">
