@@ -19,8 +19,8 @@ export default function BookingGuideCindy() {
       <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-3 md:items-start">
           <div className="md:col-span-2">
-            <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
-              Booking Made Easy—And Care You Can Trust
+            <h2 className="logo-sub text-2xl font-bold text-emerald-600 md:text-3xl">
+            Easy Booking, Trusted Eye Care.
             </h2>
             <p className="mt-3 text-slate-600 md:text-lg">
               At <span className="font-semibold">The Cindy Eye Care</span>, your comfort and clarity come first.

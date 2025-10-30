@@ -340,7 +340,7 @@ export default function AppointmentCindy() {
 
           {/* Right column: Clinic info */}
           <aside className="md:col-span-2 space-y-6">
-            <div className="rounded-2xl border border-sky-100 bg-sky-50 p-6">
+            {/* <div className="rounded-2xl border border-sky-100 bg-sky-50 p-6">
               <h3 className="text-base font-semibold text-slate-900">Clinic Hours</h3>
               <ul className="mt-3 text-sm text-slate-700">
                 <li>Mon–Fri: 9:00am – 5:00pm</li>
@@ -366,7 +366,7 @@ export default function AppointmentCindy() {
                   className="h-44 w-full object-cover"
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="rounded-2xl border border-slate-200 bg-white p-6">
               <h3 className="text-base font-semibold text-slate-900">What to Bring</h3>

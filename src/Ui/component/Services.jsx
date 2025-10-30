@@ -64,11 +64,38 @@ export default function ClinicServices({
 }
 
 function ServiceCard({ id, title, blurb, icon, href }) {
+  // Make two responsive versions of the provided icon
+  const mobileIcon =
+    icon && React.isValidElement(icon)
+      ? React.cloneElement(icon, {
+          size: 22,
+          className: `${icon.props.className || ""} shrink-0`.trim(),
+        })
+      : null;
+
+  const desktopIcon =
+    icon && React.isValidElement(icon)
+      ? React.cloneElement(icon, {
+          size: 28,
+          className: `${icon.props.className || ""} shrink-0`.trim(),
+        })
+      : null;
+
   const content = (
     <div className="group relative h-full overflow-hidden rounded-2xl border border-sky-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-      <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
-        {icon}
-      </div>
+      {/* MOBILE ICON (shown on <sm>) */}
+      {mobileIcon && (
+        <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-100 text-sky-700 sm:hidden">
+          {mobileIcon}
+        </div>
+      )}
+      {/* DESKTOP/TABLET ICON (shown on ≥sm) */}
+      {desktopIcon && (
+        <div className="mb-3 hidden h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 text-sky-700 sm:inline-flex">
+          {desktopIcon}
+        </div>
+      )}
+
       <h3 className="text-base font-semibold text-sky-950">{title}</h3>
       <p className="mt-1 text-sm leading-relaxed text-sky-900/80">{blurb}</p>
 
