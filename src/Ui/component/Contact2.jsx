@@ -15,8 +15,9 @@ export default function ContactExtrasCindy() {
   const MAPS_QUERY =
     "https://www.google.com/maps/search/?api=1&query=The+Cindy+Eye+Care%2C+Garki%2C+Abuja%2C+Nigeria";
   const MAPS_EMBED =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7928.0000000!2d7.3780!3d9.2760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCindy%20Eye%20Care!5e0!3m2!1sen!2sNG!4v0000000000000";
-
+    "https://www.google.com/maps?q=" +
+    encodeURIComponent("Cindy Eye Care, Garki, Abuja, Nigeria") +
+    "&output=embed";
   const HOURS = [
     { day: "Monday", open: "9:00 AM", close: "5:00 PM" },
     { day: "Tuesday", open: "9:00 AM", close: "5:00 PM" },
