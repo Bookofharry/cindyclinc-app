@@ -298,7 +298,7 @@ export default function AppointmentCindy() {
                   className="mt-1 h-4 w-4 rounded border-slate-300 text-sky-700 focus:ring-sky-600"
                 />
                 <label htmlFor="consent" className="text-sm text-slate-700">
-                  I agree to Cindy Eye Care’s{" "}
+                  I agree to D’Cindy Eye Care’s{" "}
                   <a href="/privacy" className="text-sky-700 underline">
                     Privacy Notice
                   </a>{" "}

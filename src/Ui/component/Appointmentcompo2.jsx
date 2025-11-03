@@ -23,7 +23,7 @@ export default function BookingGuideCindy() {
             Easy Booking, Trusted Eye Care.
             </h2>
             <p className="mt-3 text-slate-600 md:text-lg">
-              At <span className="font-semibold">The Cindy Eye Care</span>, your comfort and clarity come first.
+              At <span className="font-semibold">D’Cindy Eye Care</span>, your comfort and clarity come first.
               This guide walks you through booking, what happens during your visit, and how we make sure
               your eyewear feels designed for your life—every single day.
             </p>

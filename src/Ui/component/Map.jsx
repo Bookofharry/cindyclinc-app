@@ -69,12 +69,12 @@ function CindyMapCard({
 // src/components/ContactExtrasCindy.jsx
 
 export default function ContactExtrasCindy() {
-  const ADDRESS_TEXT = "The Cindy Eye Care, Garki, Abuja, Nigeria";
+  const ADDRESS_TEXT = "D’Cindy Eye Care, Gwarinpa, Abuja, Nigeria";
   const MAPS_QUERY =
-    "https://www.google.com/maps/search/?api=1&query=The+Cindy+Eye+Care%2C+Garki%2C+Abuja%2C+Nigeria";
+    "https://www.google.com/maps/search/?api=1&query=The+Cindy+Eye+Care%2C+Gwarinpa%2C+Abuja%2C+Nigeria";
   const MAPS_EMBED =
     "https://www.google.com/maps?q=" +
-    encodeURIComponent("Cindy Eye Care, Garki, Abuja, Nigeria") +
+    encodeURIComponent("Cindy Eye Care, Gwarinpa, Abuja, Nigeria") +
     "&output=embed";
 
   const HOURS = [
@@ -94,7 +94,7 @@ export default function ContactExtrasCindy() {
         <div className="grid gap-8 md:grid-cols-3 md:items-start">
           <div className="md:col-span-2">
             <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
-              Extra Help on Contacting <span className="text-sky-700">Cindy Eye Care</span>
+              Extra Help on Contacting <span className="text-sky-700">D’Cindy Eye Care</span>
             </h2>
             <p className="mt-3 text-slate-600 md:text-lg">
               Need quick advice, directions, or to confirm availability? Use WhatsApp for the fastest response
@@ -199,7 +199,7 @@ export default function ContactExtrasCindy() {
 
           {/* Map — now a separate component */}
           <CindyMapCard
-            title="Find Us on the Map"
+            title="Find Us on the Map(Gwarinpa Office)"
             embedSrc={MAPS_EMBED}
             mapsHref={MAPS_QUERY}
             height={360}
@@ -245,15 +245,15 @@ function localBusinessJsonLd(hours, addressText) {
   return {
     "@context": "https://schema.org",
     "@type": "Optician",
-    name: "The Cindy Eye Care",
+    name: "D’Cindy Eye Care",
     description:
-      "Eye exams, prescription renewals, frame styling, blue-light solutions, and precise fittings at The Cindy Eye Care in Bwari, Abuja.",
+      "Eye exams, prescription renewals, frame styling, blue-light solutions, and precise fittings at D’Cindy Eye Care in Gwarinpa, Abuja.",
     telephone: "+2348000000000",
     email: "hello@cindyeyecare.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: addressText,
-      addressLocality: "Bwari",
+      addressLocality: "Gwarinpa",
       addressRegion: "Abuja",
       addressCountry: "NG",
     },

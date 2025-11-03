@@ -14,11 +14,11 @@ export default function AboutCindyEyeCare() {
                 D'Cindy Eye Care
               </span>
               <h1 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 md:text-5xl">
-                About <span className="text-sky-700">Cindy Eye Care</span>
+                About <span className="text-sky-700">D’Cindy Eye Care</span>
               </h1>
               <p className="mt-5 text-lg text-slate-600 md:text-xl">
                 Experience Unmatched Clarity and Comfort with Eyewear Designed for Your Life.
-                At The Cindy Eye Care, we offer advanced optics with stylish frames. From prescription
+                At D’Cindy Eye Care, we offer advanced optics with stylish frames. From prescription
                 glasses to blue light protection, we’ve got you covered.
               </p>
 
@@ -44,7 +44,7 @@ export default function AboutCindyEyeCare() {
                 {/* Replace src with your clinic photo */}
                 <img
                   src="/images/cindy-eyecare/clinic-hero.jpg"
-                  alt="Cindy Eye Care clinic interior with display of frames"
+                  alt="D’Cindy Eye Care clinic interior with display of frames"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -60,7 +60,7 @@ export default function AboutCindyEyeCare() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">Why Patients Choose Us</h2>
           <p className="mt-3 text-slate-600">
-            We combine medical precision with fashion-forward frames—so you see clearly and look great every day.
+          Where medical precision meets modern design — so you see clearly and look great every day.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function AboutCindyEyeCare() {
             <div>
               <h3 className="text-xl font-semibold text-slate-900 md:text-2xl">Our Story</h3>
               <p className="mt-4 text-slate-600">
-                Cindy Eye Care was founded on a simple idea: eye care should be precise, warm, and beautifully
+              D’Cindy Eye Care was founded on a simple idea: eye care should be precise, warm, and beautifully
                 executed. From your first eye exam to your final frame adjustment, our clinicians and opticians
                 obsess over the details—so you don’t have to.
               </p>
@@ -130,9 +130,9 @@ export default function AboutCindyEyeCare() {
                 We measure success by clearer days, happier eyes, and confident smiles.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <Stat label="Years of Care" value="10+" />
-                <Stat label="Happy Patients" value="7,500+" />
-                <Stat label="Frames in Stock" value="800+" />
+                <Stat label="Years of Care" value="4+" />
+                <Stat label="Happy Patients" value="3,163+" />
+                <Stat label="Frames in Stock" value="550+" />
                 <Stat label="Fit Satisfaction" value="99%" />
               </div>
 

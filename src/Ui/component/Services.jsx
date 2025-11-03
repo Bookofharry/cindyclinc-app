@@ -34,7 +34,7 @@ export default function ClinicServices({
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-sky-700/80">
-              Cindy Eye Care Clinic
+            D’Cindy Eye Care Clinic
             </p>
             <h2 className="mt-1 text-2xl font-bold text-sky-950 sm:text-3xl">
               {title}

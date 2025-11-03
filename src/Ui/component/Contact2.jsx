@@ -11,12 +11,12 @@ import React from "react";
  */
 
 export default function ContactExtrasCindy() {
-  const ADDRESS_TEXT = "The Cindy Eye Care, Bwari, Abuja, Nigeria";
+  const ADDRESS_TEXT = "D’Cindy Eye Care, Garki, Abuja, Nigeria";
   const MAPS_QUERY =
     "https://www.google.com/maps/search/?api=1&query=The+Cindy+Eye+Care%2C+Garki%2C+Abuja%2C+Nigeria";
   const MAPS_EMBED =
     "https://www.google.com/maps?q=" +
-    encodeURIComponent("Cindy Eye Care, Garki, Abuja, Nigeria") +
+    encodeURIComponent("D’Cindy Eye Care, Garki, Abuja, Nigeria") +
     "&output=embed";
   const HOURS = [
     { day: "Monday", open: "9:00 AM", close: "5:00 PM" },
@@ -35,7 +35,7 @@ export default function ContactExtrasCindy() {
         <div className="grid gap-8 md:grid-cols-3 md:items-start">
           <div className="md:col-span-2">
             <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
-              Extra Help on Contacting <span className="text-sky-700">Cindy Eye Care</span>
+              Extra Help on Contacting <span className="text-sky-700">D’Cindy Eye Care</span>
             </h2>
             <p className="mt-3 text-slate-600 md:text-lg">
               Need quick advice, directions, or to confirm availability? Use WhatsApp for the fastest response
@@ -71,12 +71,12 @@ export default function ContactExtrasCindy() {
               >
                 Call the Clinic
               </a>
-              <a
+              {/* <a
                 href="mailto:hello@cindyeyecare.com"
                 className="rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
               >
                 Email Us
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -138,13 +138,13 @@ export default function ContactExtrasCindy() {
             </p>
           </div>
 
-          {/* Map */}
+          {/* Map for Garki, Abuja */}
           <div className="md:col-span-3">
-            <h3 className="text-lg font-semibold text-slate-900">Find Us on the Map</h3>
+            <h3 className="text-lg font-semibold text-slate-900">Find Us on the Map (Garki Office)</h3>
             <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200">
               {/* Replace MAPS_EMBED with your real embed once you have the exact place */}
               <iframe
-                title="Map to Cindy Eye Care"
+                title="Map to D’Cindy Eye Care"
                 src={MAPS_EMBED}
                 width="100%"
                 height="360"
@@ -205,7 +205,7 @@ function localBusinessJsonLd(hours, addressText) {
   return {
     "@context": "https://schema.org",
     "@type": "Optician",
-    name: "The Cindy Eye Care",
+    name: "D’Cindy Eye Care",
     description:
       "Eye exams, prescription renewals, frame styling, blue-light solutions, and precise fittings at The Cindy Eye Care in Bwari, Abuja.",
     telephone: "+2348000000000",

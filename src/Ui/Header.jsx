@@ -228,14 +228,17 @@ export default function NavBar2() {
                 Shop ▾
               </span>
               <div className="dropdown-menu" role="menu" aria-label="Programs">
-                <Link to="/programs/software-engineering/web-development" className="dropdown-item" role="menuitem">
+                <Link to="/shop/frames" className="dropdown-item" role="menuitem">
                   Frames
                 </Link>
-                <Link to="/programs/software-engineering/app-development" className="dropdown-item" role="menuitem">
+                <Link to="/shop/lenses" className="dropdown-item" role="menuitem">
                   Lenses
                 </Link>
-                <Link to="/programs/data-science" className="dropdown-item" role="menuitem">
+                <Link to="/shop/eyedrop" className="dropdown-item" role="menuitem">
                   Eye Drop
+                </Link>
+                <Link to="/shop/accessories" className="dropdown-item" role="menuitem">
+                  Accessories
                 </Link>
                 {/* <Link to="/programs/cloud-computing" className="dropdown-item" role="menuitem">
                   Cloud Computing
@@ -249,7 +252,7 @@ export default function NavBar2() {
               </div>
             </div>
 
-            <NavLinkPrefix to="/service">Services</NavLinkPrefix>
+            
             <Link to="/appointment" className="cta-button">Book An Apppointment</Link>
           </div>
 
@@ -282,9 +285,10 @@ export default function NavBar2() {
               </button>
               {mobileProgramsOpen && (
                 <div id="mobile-programs" className="mobile-submenu">
-                  <Link to="">Frames</Link>
-                  <Link to="">Lenses</Link>
-                  <Link to="">Eye Drop</Link>
+                  <Link to="shop/frames">Frames</Link>
+                  <Link to="shop/lenses">Lenses</Link>
+                  <Link to="shop/eyedrop">Eye Drop</Link>
+                  <Link to="shop/accessories">Accessories</Link>
                   {/* <Link to="/programs/cloud-computing">Cloud Computing</Link>
                   <Link to="/programs/digital-marketing">Digital Marketing</Link>
                   <Link to="/programs/coding-for-kids-engineering">Coding for Kids Engineering</Link>
@@ -293,7 +297,7 @@ export default function NavBar2() {
               )}
             </div>
 
-            <NavLinkPrefix to="/service">Services</NavLinkPrefix>
+            
             <Link to="/appointment" className="cta-button mobile-cta-button">Book An Appointment</Link>
           </div>
         </nav>

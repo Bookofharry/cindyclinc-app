@@ -40,10 +40,10 @@ export default function Footer() {
             <h3 className="tracking-widest uppercase text-sm font-semibold text-white mb-3">Platform</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/features" className="hover:text-indigo-400 transition-colors">Features</Link>
+                <Link to="/shop" className="hover:text-indigo-400 transition-colors">Shops</Link>
               </li>
               <li>
-                <Link to="/pricing" className="hover:text-indigo-400 transition-colors">Pricing</Link>
+                <Link to="/pricing" className="hover:text-indigo-400 transition-colors">Sales Offer</Link>
               </li>
               <li>
                 <Link to="/appointments" className="hover:text-indigo-400 transition-colors">Book Now</Link>
@@ -88,9 +88,7 @@ export default function Footer() {
               <a href="#" title="Instagram" className="text-gray-500 hover:text-indigo-400 transition-colors">
                 <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="https://github.com/developer-link" title="GitHub" className="text-gray-500 hover:text-indigo-400 transition-colors">
-                <FaGithub className="w-5 h-5" />
-              </a>
+
             </div>
             
             <p className="pt-2 text-sm text-gray-500">
@@ -106,17 +104,22 @@ export default function Footer() {
       {/* Footer Bottom: Copyright & Attribution */}
       <div className="border-t border-gray-700/50 py-6">
         <div className="container mx-auto px-4 text-sm text-center">
-          <p className="text-gray-500">
+          <p className="text-gray-500 ">
             &copy; {currentYear} D’Cindy Eyecare. All rights reserved. <br />
-            <span className="ml-4">
+            <span className=" ml-4 ">
               Built with <FaHeart className="inline w-3 h-3 text-red-500 mx-1" /> by 
               <a 
                 href="https://wa.me/2348104377665" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-indigo-400 hover:text-indigo-300 font-medium ml-1"
+                className="text-indigo-400 hover:text-indigo-300 font-medium ml-1 pr-2.5"
               >
                 Dev Harry
+                
+              </a>
+            
+              <a href="https://github.com/bookofharry"  title="GitHub" className=" inline text-gray-500 hover:text-indigo-400 transition-colors">
+                <FaGithub className="w-5 h-5 inline" />
               </a>
             </span>
           </p>

@@ -62,7 +62,7 @@ export default function Vision({
             
             {/* Tagline/Metadata */}
             <p className="text-sm font-medium tracking-widest text-indigo-400 uppercase mb-4">
-              Cindy Eye Care Platform
+            D’Cindy Eye Care Platform
             </p>
 
             {/* Main Title (Larger on desktop, perfectly sized on mobile) */}
