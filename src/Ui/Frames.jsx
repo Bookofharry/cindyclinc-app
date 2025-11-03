@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCart } from "../store/cart.jsx";
 import { useOutletContext } from "react-router-dom";
 
 // Example data — swap for your real data source
@@ -39,7 +40,7 @@ const FRAMES = [
 ];
 
 export default function Frames() {
-  const { addToCart } = useOutletContext(); // from Shop.jsx
+  const { addToCart } = useCart(); // from Shop.jsx
   const [adding, setAdding] = useState({}); // { [id]: true }
 
   const handleAdd = async (product) => {

@@ -1,6 +1,7 @@
 import { NavLink, Outlet, Link } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import CartDrawer from "../Ui/CartDrawer.jsx";
+import { useCart } from "../store/cart.jsx"; // NEW
 
 const navItems = [
   { to: "/shop/frames", label: "Frames" },
@@ -10,41 +11,15 @@ const navItems = [
 ];
 
 export default function Shop() {
+  const { items, cartCount, removeItem, qtyChange } = useCart(); // from context
   const [cartHover, setCartHover] = useState(false);
-  const [items, setItems] = useState([]); // { id, name, price, qty, code?, image? }
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const cartCount = useMemo(
-    () => items.reduce((sum, it) => sum + (it.qty ?? 1), 0),
-    [items]
-  );
-
-  const addToCart = (p) => {
-    setItems((prev) => {
-      const i = prev.findIndex((x) => x.id === p.id);
-      if (i >= 0) {
-        return prev.map((x) => (x.id === p.id ? { ...x, qty: (x.qty ?? 1) + 1 } : x));
-      }
-      return [...prev, { id: p.id, name: p.name, price: p.price, code: p.code, image: p.image, qty: 1 }];
-    });
-    setIsCartOpen(true);
-  };
-
-  const removeItem = (id) => setItems((xs) => xs.filter((x) => x.id !== id));
-  const qtyChange = (id, qty) =>
-    setItems((xs) => xs.map((x) => (x.id === id ? { ...x, qty: Math.max(1, qty) } : x)));
-  const checkout = () => console.log("checkout"); // replace with your flow
+  const checkout = () => console.log("checkout"); // plug your flow
 
   return (
     <div className="relative min-h-screen bg-white text-slate-800">
-      {/* Background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 [background:linear-gradient(to_right,rgba(2,6,23,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(2,6,23,.06)_1px,transparent_1px)] bg-[size:22px_22px]" />
-        <div className="absolute inset-0 [mask-image:radial-gradient(70%_60%_at_50%_10%,black,transparent_70%)]">
-          <div className="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-gradient-to-b from-sky-300/50 via-blue-300/30 to-transparent blur-3xl" />
-          <div className="absolute -bottom-56 left-1/3 h-[28rem] w-[28rem] rounded-full bg-gradient-to-t from-indigo-300/40 via-violet-300/25 to-transparent blur-3xl" />
-        </div>
-      </div>
+      {/* background omitted for brevity (keep your version) */}
 
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
         {/* Top bar */}
@@ -54,7 +29,6 @@ export default function Shop() {
             <span className="text-sm font-semibold text-slate-900 sm:text-base">D’Cindy Eyecare</span>
           </Link>
 
-          {/* Cart button */}
           <button
             type="button"
             aria-label="Open cart"
@@ -83,51 +57,15 @@ export default function Shop() {
           </button>
         </div>
 
-        {/* Header */}
-        <header className="mb-6 text-center">
-          <h1 className="text-balance bg-gradient-to-b from-slate-900 to-slate-600 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl md:text-6xl">
-            D’Cindy Eyecare Shop
-          </h1>
-          <p className="mx-auto mt-2 max-w-xl text-pretty text-sm text-slate-600 sm:text-base">
-            Explore premium eyewear, lenses, and care products crafted for clarity, comfort, and timeless style.
-          </p>
-        </header>
+        {/* Header + Nav ... keep your existing markup */}
 
-        {/* Nav */}
-        <nav className="mx-auto mt-4 flex w-full justify-center">
-          <ul className="flex max-w-full snap-x snap-mandatory gap-2 overflow-x-auto rounded-2xl border border-slate-200/70 bg-white/70 p-1.5 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            {navItems.map((item) => (
-              <li key={item.to} className="snap-start">
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    [
-                      "group inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium transition",
-                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70",
-                      isActive
-                        ? "bg-slate-900 text-white shadow"
-                        : "text-slate-700 hover:bg-slate-100/80 active:bg-slate-200/70",
-                    ].join(" ")
-                  }
-                  end
-                >
-                  <span className="relative">
-                    {item.label}
-                    <span className="pointer-events-none absolute -bottom-1 left-1/2 hidden h-[2px] w-8 -translate-x-1/2 rounded-full bg-white/70 group-[.active]:block" />
-                  </span>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Routed content with addToCart provided via Outlet context */}
+        {/* Nested content */}
         <main className="mx-auto mt-6 min-h-[40vh] max-w-6xl rounded-3xl border border-slate-200/70 bg-white/70 p-4 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/50 sm:p-6 md:p-8">
-          <Outlet context={{ addToCart }} />
+          <Outlet />
         </main>
       </div>
 
-      {/* Cart Drawer */}
+      {/* Drawer uses global items */}
       <CartDrawer
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
