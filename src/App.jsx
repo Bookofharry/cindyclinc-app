@@ -10,7 +10,10 @@ import Appointment from "./pages/Appointment.jsx";
 import Contact from "./pages/Contact.jsx";
 import ScrollToTop from "./Scroll.jsx";
 import Frames from "./Ui/Frames.jsx";
+import Lenses from "./Ui/Lenses.jsx";
 import { CartProvider } from "./store/cart.jsx"; // NEW
+import Eyedrop from "./Ui/Eyedrop.jsx";
+import Accessories from "./Ui/Accessories.jsx";
 
 function App() {
   return (
@@ -27,9 +30,9 @@ function App() {
 
           <Route path="/shop" element={<Shop />}>
             <Route path="frames" element={<Frames />} />
-            <Route path="eyedrop" element={<h1>Eye Drop Component</h1>} />
-            <Route path="lenses" element={<h1>Lenses Component</h1>} />
-            <Route path="accessories" element={<h1>Accessories Component</h1>} />
+            <Route path="eyedrop" element={<Eyedrop/>} />
+            <Route path="lenses" element={<Lenses/>} />
+            <Route path="accessories" element={<Accessories/>} />
           </Route>
 
           <Route path="/appointment" element={<Appointment />} />

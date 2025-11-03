@@ -120,12 +120,12 @@ export default function Home() {
 
       <Vision onBook={() => navigate("/book")} onExplore={() => navigate("/shop")} />
 
-      <LatestProducts
+      {/* <LatestProducts
         products={demo}
         limit={8}
         seeAllHref="/shop"
         currency="NGN"
-      />
+      /> */}
       <ClinicServices/>
     </div>
   );

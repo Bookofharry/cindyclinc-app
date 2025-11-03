@@ -13,7 +13,7 @@ const FRAMES = [
     specs: { lens: 52, bridge: 18, temple: 145 },
     color: "Tortoise",
     image:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
+      "",
   },
   {
     id: "fr-noah-49",
