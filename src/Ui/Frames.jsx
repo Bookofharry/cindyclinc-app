@@ -1,16 +1,12 @@
-// Frames.jsx
-// A silicon‑style product grid for frames with: amount (price), name, product code (SKU),
-// Add to Cart button, and a "Fits" indicator (what it should fit).
-// TailwindCSS only, no external UI libs.
-
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 // Example data — swap for your real data source
 const FRAMES = [
   {
     id: "fr-ava-52",
     name: "Ava Acetate",
-    price: 42000, // NGN (or your currency)
+    price: 42000,
     code: "SKU-A52",
     fit: "Medium",
     specs: { lens: 52, bridge: 18, temple: 145 },
@@ -31,7 +27,7 @@ const FRAMES = [
   },
   {
     id: "fr-luna-54",
-    name: "Luna Cat‑Eye",
+    name: "Luna Cat-Eye",
     price: 51000,
     code: "SKU-L54",
     fit: "Wide",
@@ -42,23 +38,21 @@ const FRAMES = [
   },
 ];
 
-export default function Frames({ onAddToCart }) {
+export default function Frames() {
+  const { addToCart } = useOutletContext(); // from Shop.jsx
   const [adding, setAdding] = useState({}); // { [id]: true }
 
   const handleAdd = async (product) => {
     setAdding((s) => ({ ...s, [product.id]: true }));
     try {
-      // Hand off to parent/cart store
-      onAddToCart?.({
+      addToCart({
         id: product.id,
         name: product.name,
         price: product.price,
         code: product.code,
-        qty: 1,
-        category: "frames",
+        image: product.image,
       });
-      // brief success state
-      await new Promise((r) => setTimeout(r, 600));
+      await new Promise((r) => setTimeout(r, 400));
     } finally {
       setAdding((s) => ({ ...s, [product.id]: false }));
     }
@@ -103,8 +97,8 @@ export default function Frames({ onAddToCart }) {
                   <h3 className="text-base font-semibold text-slate-900">
                     {p.name}
                   </h3>
-                  <div className="text-right text-sm font-semibold text-slate-900">
-                    ₦{(p.price).toLocaleString()}
+                  <div className="text-right text-sm font-semibold text-slate-900 tabular-nums">
+                    ₦{p.price.toLocaleString()}
                   </div>
                 </div>
 
@@ -116,7 +110,7 @@ export default function Frames({ onAddToCart }) {
                     Fits: {p.fit}
                   </span>
                   <span className="inline-flex items-center rounded-full border border-slate-200 px-2 py-0.5">
-                    {p.specs.lens}‑{p.specs.bridge}‑{p.specs.temple} mm
+                    {p.specs.lens}-{p.specs.bridge}-{p.specs.temple} mm
                   </span>
                   <span className="inline-flex items-center rounded-full border border-slate-200 px-2 py-0.5">
                     Color: {p.color}
@@ -129,6 +123,7 @@ export default function Frames({ onAddToCart }) {
                     onClick={() => handleAdd(p)}
                     disabled={!!adding[p.id]}
                     className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow transition hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70 disabled:cursor-not-allowed disabled:opacity-70"
+                    aria-label={`Add ${p.name} to cart`}
                   >
                     {adding[p.id] ? "Adding…" : "Add to Cart"}
                   </button>
@@ -145,19 +140,13 @@ export default function Frames({ onAddToCart }) {
           ))}
         </ul>
 
-        {/* Optional: a size/fit explainer to clarify "what should fit it" */}
+        {/* Optional: a size/fit explainer */}
         <div id="size-guide" className="mt-8 rounded-2xl border border-slate-200/70 bg-white/80 p-4 text-sm text-slate-700 shadow-sm">
           <h3 className="mb-2 text-base font-semibold text-slate-900">Fit & Sizing</h3>
           <ul className="list-disc space-y-1 pl-5">
-            <li>
-              <span className="font-medium">Fits:</span> A quick recommendation for face width — Narrow, Medium, or Wide.
-            </li>
-            <li>
-              <span className="font-medium">Numbers like 52‑18‑145:</span> lens width – bridge – temple length (in millimeters).
-            </li>
-            <li>
-              <span className="font-medium">Tip:</span> Compare to a pair you own; a close match usually means a comfortable fit.
-            </li>
+            <li><span className="font-medium">Fits:</span> Narrow, Medium, or Wide (face width guidance).</li>
+            <li><span className="font-medium">52-18-145:</span> lens – bridge – temple length (mm).</li>
+            <li><span className="font-medium">Tip:</span> Compare to a pair you own for the best comfort.</li>
           </ul>
         </div>
       </div>
