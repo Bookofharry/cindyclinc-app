@@ -58,6 +58,43 @@ export default function Shop() {
         </div>
 
         {/* Header + Nav ... keep your existing markup */}
+        <header className="mb-6 text-center">
+          <h1 className="text-balance bg-gradient-to-b from-slate-900 to-slate-600 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl md:text-6xl">
+            D’Cindy Eyecare Shop
+          </h1>
+          <p className="mx-auto mt-2 max-w-xl text-pretty text-sm text-slate-600 sm:text-base">
+            Explore premium eyewear, lenses, and care products crafted for clarity, comfort, and timeless style.
+          </p>
+        </header>
+
+        {/* Nav */}
+        <nav className="mx-auto mt-4 flex w-full justify-center">
+          <ul className="flex max-w-full snap-x snap-mandatory gap-2 overflow-x-auto rounded-2xl border border-slate-200/70 bg-white/70 p-1.5 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {navItems.map((item) => (
+              <li key={item.to} className="snap-start">
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) =>
+                    [
+                      "group inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium transition",
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70",
+                      isActive
+                        ? "bg-slate-900 text-white shadow"
+                        : "text-slate-700 hover:bg-slate-100/80 active:bg-slate-200/70",
+                    ].join(" ")
+                  }
+                  end
+                >
+                  <span className="relative">
+                    {item.label}
+                    <span className="pointer-events-none absolute -bottom-1 left-1/2 hidden h-[2px] w-8 -translate-x-1/2 rounded-full bg-white/70 group-[.active]:block" />
+                  </span>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
 
         {/* Nested content */}
         <main className="mx-auto mt-6 min-h-[40vh] max-w-6xl rounded-3xl border border-slate-200/70 bg-white/70 p-4 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/50 sm:p-6 md:p-8">
